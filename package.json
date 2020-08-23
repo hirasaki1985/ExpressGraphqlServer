@@ -1,0 +1,22 @@
+{
+  "name": "express_graphql_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/hirasaki1985/ExpressGraphqlServer.git"
+  },
+  "author": "Mamoru Hirasaki <hirasaki1985@gmail.com> (https://walking-succession-falls.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hirasaki1985/ExpressGraphqlServer/issues"
+  },
+  "homepage": "https://github.com/hirasaki1985/ExpressGraphqlServer#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
