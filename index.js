@@ -1,34 +1,30 @@
-const express = require('express')
-const { graphqlHTTP } = require('express-graphql')
-const { buildSchema } = require('graphql')
+import express from 'express';
+import bodyParser from 'body-parser';
+import { ApolloServer }  from 'apollo-server-express';
+import { createServer } from 'http';
+import { execute, subscribe } from 'graphql';
+// import { PubSub } from 'graphql-subscriptions';
+import { SubscriptionServer } from 'subscriptions-transport-ws';
+import myGraphQLSchema from './mySchema.js';
 
-// GraphQL schema
-const schema = buildSchema(`
- type Query {
- message: String
- }
-`);
+const PORT = 3000;
+const app = express();
 
-// Root resolver
-const root = {
-  message: () => 'Hello World!'
-}
+app.use('/graphql', bodyParser.json());
 
-/**
- * express
- */
-const app = express()
-const port = 3000
+const apolloServer = new ApolloServer({ schema: myGraphQLSchema });
+apolloServer.applyMiddleware({ app });
 
-app.use(
-  '/graphql',
-  graphqlHTTP({
-    schema: schema,
-    rootValue: root,
-    graphiql: true,
-  }),
-);
+// const pubsub = new PubSub();
+const server = createServer(app);
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+server.listen(PORT, () => {
+  new SubscriptionServer({
+    execute,
+    subscribe,
+    schema: myGraphQLSchema,
+  }, {
+    server: server,
+    path: '/subscriptions',
+  });
+});
