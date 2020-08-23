@@ -2,6 +2,7 @@
   "name": "express_graphql_server",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,8 +18,11 @@
   },
   "homepage": "https://github.com/hirasaki1985/ExpressGraphqlServer#readme",
   "dependencies": {
+    "apollo-server-express": "^2.16.1",
     "express": "^4.17.1",
     "express-graphql": "^0.11.0",
-    "graphql": "^15.3.0"
+    "graphql": "^14.7.0",
+    "graphql-subscriptions": "^1.1.0",
+    "subscriptions-transport-ws": "^0.9.18"
   }
 }
